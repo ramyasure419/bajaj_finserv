@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState, useEffect } from 'react';
+import MultiSelectComponent from './components/MultiSelectComponent';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const Home = () => {
+  const [apiResponse, setApiResponse] = useState(null);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  // Simulate fetching API response
+  const fetchApiResponse = () => {
+    setApiResponse(["A", "B", "z", "3", "a"]);
+  };
+
+  // Set the document title to your roll number
+  useEffect(() => {
+    document.title = "AP21110011419"; // Replace with your actual roll number
+  }, []);
+
+  return (
+    <div>
+      <h1>JSON Processor with Multi-Select</h1>
+      <button onClick={fetchApiResponse}>Simulate API Response</button>
+      {apiResponse && <MultiSelectComponent apiResponse={apiResponse} />}
+    </div>
+  );
+};
+
+export default Home;
